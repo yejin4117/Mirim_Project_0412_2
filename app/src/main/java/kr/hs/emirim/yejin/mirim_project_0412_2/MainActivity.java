@@ -25,42 +25,53 @@ public class MainActivity extends AppCompatActivity {
             btn[i] = findViewById(btnId[i]);
             btn[i].setOnClickListener(btnListener);
         }
-
-        View.OnClickListener btnListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String edit1Str = edit1.getText().toString();
-                String edit2Str = edit2.getText().toString();
-                if(edit1Str.equals("")||edit2Str.equals("")){
-                    Toast.makeText(getApplicationContext(),
-                            "연산자에 필요한 숫자가 입력되지 안았습니다.",
-                            Toast.LENGTH_LONG).show();
-                    return;
-                }
-                double num1 = Double.parseDouble(edit1Str);
-                double num2 = Double.parseDouble(edit2Str);
-                double result = 0;
-
-                switch (view.getId()){
-                    case R.id.btn_plus:
-                        result = num1 + num2;
-                        break;
-                    case R.id.btn_minus:
-                        result = num1 - num2;
-                        break;
-                    case R.id.btn_multi:
-                        result = num1 * num2;
-                        break;
-                    case R.id.btn_divide:
-                        result = num1 / num2;
-                        break;
-                    case R.id.btn_mod:
-                        result = num1 % num2;
-                        break;
-                }
-                textResult.setText(R.string.text_result);
-                textResult.append(" "+result);
-            }
-        };
     }
+    View.OnClickListener btnListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            String edit1Str = edit1.getText().toString();
+            String edit2Str = edit2.getText().toString();
+            if(edit1Str.equals("")||edit2Str.equals("")){
+                Toast.makeText(getApplicationContext(),
+                        "연산자에 필요한 숫자가 입력되지 안았습니다.",
+                        Toast.LENGTH_LONG).show();
+                return;
+            }
+            double num1 = Double.parseDouble(edit1Str);
+            double num2 = Double.parseDouble(edit2Str);
+            double result = 0;
+
+            switch (view.getId()){
+                case R.id.btn_plus:
+                    result = num1 + num2;
+                    break;
+                case R.id.btn_minus:
+                    result = num1 - num2;
+                    break;
+                case R.id.btn_multi:
+                    result = num1 * num2;
+                    break;
+                case R.id.btn_divide;
+                    if(num2==0){
+                        Toast.makeText(getApplicationContext(),
+                                "나누는 수는 0이면 안됩니다.",
+                                Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    result = num1 / num2;
+                    break;
+                case R.id.btn_mod;
+                    if(num2==0){
+                        Toast.makeText(getApplicationContext(),
+                                "나누는 수는 0이면 안됩니다.",
+                                Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    result = num1 % num2;
+                    break;
+            }
+            textResult.setText(R.string.text_result);
+            textResult.append(" "+result);
+        }
+    };
 }
