@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.btn_multi:
                     result = num1 * num2;
                     break;
-                case R.id.btn_divide;
+                case R.id.btn_divide:
                     if(num2==0){
                         Toast.makeText(getApplicationContext(),
                                 "나누는 수는 0이면 안됩니다.",
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     result = num1 / num2;
                     break;
-                case R.id.btn_mod;
+                case R.id.btn_mod:
                     if(num2==0){
                         Toast.makeText(getApplicationContext(),
                                 "나누는 수는 0이면 안됩니다.",
@@ -71,7 +71,9 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
             textResult.setText(R.string.text_result);
-            textResult.append(" "+result);
+            textResult.append(" "+String.format("%.2f", result));
         }
     };
+
+
 }
